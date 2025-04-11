@@ -2,6 +2,7 @@ const socket = io();
 let localStream;
 const constraints = { audio: true, video: false };
 let currentSeat = null;
+let microphoneEnabled = true;
 
 document.getElementById('start-button').onclick = startChat;
 document.getElementById('mute-button').onclick = toggleMute;
@@ -67,6 +68,17 @@ function toggleMute() {
     if (localStream) {
         const audioTrack = localStream.getAudioTracks()[0];
         audioTrack.enabled = !audioTrack.enabled;
+        microphoneEnabled = !microphoneEnabled;
+
+        // Mikrofon simgesi değişimi
+        const muteButton = document.getElementById('mute-button');
+        if (microphoneEnabled) {
+            muteButton.innerHTML = 'Mikrofonu Kapat';
+            muteButton.style.backgroundImage = "url('public/microphone-on.png')";
+        } else {
+            muteButton.innerHTML = 'Mikrofonu Aç';
+            muteButton.style.backgroundImage = "url('public/microphone-off.png')";
+        }
     }
 }
 
