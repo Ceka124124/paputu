@@ -8,6 +8,18 @@ body {
     margin: 0;
     padding: 0;
 }
+/* Mikrofon ikonu için stil */
+#microphone-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
+#microphone-icon {
+    width: 60px;
+    height: 60px;
+}
 
 .chat-room {
     background-color: #ffffff;
