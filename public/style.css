@@ -6,21 +6,26 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    padding: 0;
 }
+
 .chat-room {
     background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     text-align: center;
 }
+
 .seats-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     margin-bottom: 20px;
 }
+
 .seat {
     background-image: url('seat-icon.png');
     background-size: cover;
@@ -33,29 +38,36 @@ body {
     margin: auto;
     transition: transform 0.2s ease;
 }
+
 .seat:hover {
     transform: scale(1.05);
 }
+
 .seat.taken {
     opacity: 0.4;
     cursor: not-allowed;
 }
+
 .seat-label {
     margin-top: 5px;
     font-size: 14px;
     font-weight: bold;
     text-align: center;
 }
+
 .seat-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .controls {
     display: flex;
     gap: 10px;
     justify-content: center;
+    margin-top: 20px;
 }
+
 button {
     padding: 10px;
     background-color: #4CAF50;
@@ -65,6 +77,47 @@ button {
     cursor: pointer;
     width: 100px;
 }
+
 button:hover {
     background-color: #45a049;
+}
+
+/* Mobil uyumluluk için medya sorguları */
+@media (max-width: 768px) {
+    .seats-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .seat {
+        width: 70px;
+        height: 70px;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    button {
+        width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    .seats-container {
+        grid-template-columns: 1fr;
+    }
+
+    .seat {
+        width: 60px;
+        height: 60px;
+    }
+
+    .controls {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    button {
+        width: 80%;
+    }
 }
