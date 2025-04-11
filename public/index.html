@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -12,9 +11,9 @@
         <h2>Sesli Sohbet Odası</h2>
         <div class="seats-container" id="seats-container"></div>
         <div class="controls">
-            <button id="start-button">Başlat</button>
-            <button id="mute-button">Mikrofonu Kapat</button>
-            <button id="leave-button">Çıkış</button>
+            <button id="start-button" aria-label="Sohbet odasına katıl">Başlat</button>
+            <button id="mute-button" aria-label="Mikrofonu aç/kapat">Mikrofonu Kapat</button>
+            <button id="leave-button" aria-label="Sohbet odasından çık">Çıkış</button>
         </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>
