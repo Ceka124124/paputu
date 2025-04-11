@@ -1,7 +1,7 @@
-
 const socket = io();
 let localStream;
 const constraints = { audio: true, video: false };
+let currentSeat = null;
 
 document.getElementById('start-button').onclick = startChat;
 document.getElementById('mute-button').onclick = toggleMute;
@@ -20,25 +20,47 @@ async function startChat() {
 function displaySeats() {
     const seatsContainer = document.getElementById('seats-container');
     seatsContainer.innerHTML = "";
-    for (let i = 0; i < 5; i++) {
-        let seat = document.createElement('div');
+    for (let i = 0; i < 6; i++) {
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('seat-wrapper');
+
+        const seat = document.createElement('div');
         seat.classList.add('seat');
-        seat.innerHTML = `Koltuk ${i + 1}`;
+        seat.id = `seat-${i}`;
         seat.onclick = () => joinSeat(i);
-        seatsContainer.appendChild(seat);
+
+        const label = document.createElement('div');
+        label.classList.add('seat-label');
+        label.textContent = `Koltuk ${i + 1}`;
+
+        wrapper.appendChild(seat);
+        wrapper.appendChild(label);
+        seatsContainer.appendChild(wrapper);
     }
 }
 
 function joinSeat(seatId) {
+    if (currentSeat === seatId) return;
     socket.emit('joinSeat', { seatId, userId: socket.id });
 }
 
 socket.on('userJoined', (data) => {
-    console.log('User Joined:', data);
+    const allSeats = document.querySelectorAll('.seat');
+    allSeats.forEach(seat => seat.classList.remove('taken'));
+
+    data.allSeats.forEach((userId, index) => {
+        if (userId && userId !== socket.id) {
+            const seat = document.getElementById(`seat-${index}`);
+            if (seat) seat.classList.add('taken');
+        }
+        if (userId === socket.id) {
+            currentSeat = index;
+        }
+    });
 });
 
 socket.on('seatTaken', (data) => {
-    alert(`Koltuk ${data.seatId} zaten dolu.`);
+    alert(`Koltuk ${data.seatId + 1} zaten dolu.`);
 });
 
 function toggleMute() {
