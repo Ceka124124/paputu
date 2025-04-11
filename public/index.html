@@ -9,10 +9,14 @@
 <body>
     <div class="chat-room">
         <h2>Sesli Sohbet Odası</h2>
+        <div class="join-section">
+            <input type="text" id="room-id" placeholder="Oda ID'sini girin" />
+            <input type="text" id="user-name" placeholder="Kullanıcı adınızı girin" />
+            <button id="join-button">Odaya Katıl</button>
+        </div>
         <div class="seats-container" id="seats-container"></div>
         <div class="controls">
-            <button id="start-button" aria-label="Sohbet odasına katıl">Başlat</button>
-            <button id="leave-button" aria-label="Sohbet odasından çık">Çıkış</button>
+            <button id="leave-button">Çıkış</button>
         </div>
     </div>
 
