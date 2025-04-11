@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesli Sohbet Odası</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="chat-room">
+        <h2>Sesli Sohbet Odası</h2>
+        <div class="seats-container" id="seats-container"></div>
+        <div class="controls">
+            <button id="start-button">Başlat</button>
+            <button id="mute-button">Mikrofonu Kapat</button>
+            <button id="leave-button">Çıkış</button>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
