@@ -2,11 +2,11 @@ const socket = io();
 let localStream;
 const constraints = { audio: true, video: false };
 let currentSeat = null;
-let microphoneEnabled = true;
+let microphoneEnabled = false;
 
 document.getElementById('start-button').onclick = startChat;
-document.getElementById('mute-button').onclick = toggleMute;
 document.getElementById('leave-button').onclick = leaveChat;
+document.getElementById('microphone-icon').onclick = toggleMute; // Mikrofon simgesine tıklama işlevi
 
 async function startChat() {
     try {
@@ -21,7 +21,7 @@ async function startChat() {
 function displaySeats() {
     const seatsContainer = document.getElementById('seats-container');
     seatsContainer.innerHTML = "";
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < 6; i++) {
         const wrapper = document.createElement('div');
         wrapper.classList.add('seat-wrapper');
 
@@ -71,13 +71,11 @@ function toggleMute() {
         microphoneEnabled = !microphoneEnabled;
 
         // Mikrofon simgesi değişimi
-        const muteButton = document.getElementById('mute-button');
+        const microphoneIcon = document.getElementById('microphone-icon');
         if (microphoneEnabled) {
-            muteButton.innerHTML = '';
-            muteButton.style.backgroundImage = "url('public/microphone-on.png')";
+            microphoneIcon.src = 'public/microphone-on.png';
         } else {
-            muteButton.innerHTML = '';
-            muteButton.style.backgroundImage = "url('public/microphone-off.png')";
+            microphoneIcon.src = 'public/microphone-off.png';
         }
     }
 }
