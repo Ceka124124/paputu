@@ -21,7 +21,7 @@ async function startChat() {
 function displaySeats() {
     const seatsContainer = document.getElementById('seats-container');
     seatsContainer.innerHTML = "";
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 9; i++) {
         const wrapper = document.createElement('div');
         wrapper.classList.add('seat-wrapper');
 
@@ -73,10 +73,10 @@ function toggleMute() {
         // Mikrofon simgesi değişimi
         const muteButton = document.getElementById('mute-button');
         if (microphoneEnabled) {
-            muteButton.innerHTML = 'Mikrofonu Kapat';
+            muteButton.innerHTML = '';
             muteButton.style.backgroundImage = "url('public/microphone-on.png')";
         } else {
-            muteButton.innerHTML = 'Mikrofonu Aç';
+            muteButton.innerHTML = '';
             muteButton.style.backgroundImage = "url('public/microphone-off.png')";
         }
     }
