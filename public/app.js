@@ -4,14 +4,27 @@ const constraints = { audio: true, video: false };
 let currentSeat = null;
 let microphoneEnabled = false;
 
-document.getElementById('start-button').onclick = startChat;
+document.getElementById('join-button').onclick = joinRoom;
 document.getElementById('leave-button').onclick = leaveChat;
-document.getElementById('microphone-icon').onclick = toggleMute; // Mikrofon simgesine tıklama işlevi
+document.getElementById('microphone-icon').onclick = toggleMute;
 
-async function startChat() {
+async function joinRoom() {
+    const roomId = document.getElementById('room-id').value.trim();
+    const userName = document.getElementById('user-name').value.trim();
+
+    if (!roomId || !userName) {
+        alert('Oda ID ve kullanıcı adı gerekli.');
+        return;
+    }
+
     try {
+        // WebRTC medya akışını başlatıyoruz
         localStream = await navigator.mediaDevices.getUserMedia(constraints);
-        socket.emit('joinRoom', { roomId: 'testRoom' });
+
+        // Odaya katılım sağlıyoruz
+        socket.emit('joinRoom', { roomId, userName });
+
+        // Koltukları göstermek için displaySeats fonksiyonunu çağırıyoruz
         displaySeats();
     } catch (err) {
         console.error('Media Error:', err);
