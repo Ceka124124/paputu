@@ -62,7 +62,7 @@ const WORDS = {
   },
   az: {
     esyalar: [
-      'qələm','pozən','dəftər','kitab','masa','stul','kompüter','siçan','klaviatura','telefon','qulaqcıq','lampa','fincan','çətir','pulqabı','ayaqqabı','açar','sumka','pəncərə','qapı','televizor','pult','rozetka','saat','qazan','boşqab','çəngəl','bıçaq','qaşıq','fırça','çəkic','qayçı','şar','yastıq','yorğan','xalı','vaza','güzgü','velosiped'
+      'qələm', 'Tuman', 'pozən','dəftər','kitab','masa','stul','kompüter','siçan','klaviatura','telefon','qulaqcıq','lampa','fincan','çətir','pulqabı','ayaqqabı','açar','sumka','pəncərə','qapı','televizor','pult','rozetka','saat','qazan','boşqab','çəngəl','bıçaq','qaşıq','fırça','çəkic','qayçı','şar','yastıq','yorğan','xalı','vaza','güzgü','velosiped'
     ],
     meyveler: [
       'alma','armud','banan','çiyələk','albalı','qarpız','qovun','şaftalı','üzüm','nar','portağal','mandarin','qreyfrut','ananas','avokado','vişnə','yaban mersini','moruq','incir','xurma','tut','gavalı','heyva','limon'
@@ -216,7 +216,7 @@ io.on('connection', (socket) => {
         maxPlayers,
         players: new Map(),
         round: 0,
-        maxRounds: 10,
+        maxRounds: 50,
         drawerOrder: [],
         currentWord: null,
         currentDrawer: null,
