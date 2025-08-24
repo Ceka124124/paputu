@@ -168,7 +168,7 @@ function startRound(roomId) {
   room.currentDrawer = drawerId;
   const word = pickWord(room.language, room.category);
   room.currentWord = word;
-  room.roundEndsAt = Date.now() + 80 * 1000; // 80 saniye raund
+  room.roundEndsAt = Date.now() + 260 * 1000; // 80 saniye raund
 
   // Çizen kişiye kelimeyi gönder
   io.to(drawerId).emit('round:start:drawer', { word, round: room.round, maxRounds: room.maxRounds });
@@ -187,7 +187,7 @@ function startRound(roomId) {
     const r = rooms.get(roomId);
     if (!r || r.currentWord === null) return; // zaten bitmiş olabilir
     endRound(roomId, 'time');
-  }, 80 * 1000 + 200);
+  }, 260 * 1000 + 200);
 }
 
 // ======= Socket.IO Olayları =======
@@ -282,11 +282,11 @@ io.on('connection', (socket) => {
           let award = 10;
           // erken tahmin daha yüksek puan (kalan süreye göre 5 ek)
           const remaining = Math.max(0, room.roundEndsAt - Date.now());
-          award += Math.floor(5 * (remaining / (80 * 1000)));
+          award += Math.floor(5 * (remaining / (260 * 1000)));
           p.score += award;
           // çizen kişiye küçük puan
           const drawer = room.players.get(room.currentDrawer);
-          if (drawer) drawer.score += 3;
+          if (drawer) drawer.score += 5;
 
           io.to(roomId).emit('guess:correct', { by: p.username, award, total: p.score });
           broadcastRoomState(roomId);
